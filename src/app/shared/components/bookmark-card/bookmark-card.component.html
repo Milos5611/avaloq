@@ -1,0 +1,12 @@
+<mat-card>
+  <button mat-button color="warn" (click)="removeBookmark(bookmark)">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <mat-card-title> Name: {{ name }}</mat-card-title>
+  <mat-card-content>
+    <p>
+      Bookmark link: <a [href]="url" target="_blank">{{ url }}</a
+      >.
+    </p>
+  </mat-card-content>
+</mat-card>

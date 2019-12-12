@@ -1,0 +1,38 @@
+<ng-container *ngIf="bookmarks.length > 0; else noData">
+  <div *ngFor="let group of groups | keyvalue">
+    <mat-card class="group_by">
+      <mat-card-title> Group: {{ group.key }} </mat-card-title>
+      <mat-card-content>
+        <app-bookmark-card
+          *ngFor="let bookmark of group.value"
+          [name]="bookmark.name"
+          [url]="bookmark.url"
+          (forRemove)="removeBookmark(bookmark)"
+        ></app-bookmark-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-container>
+
+<ng-template #noData>
+  <mat-card aligne="center">No Bookmarks</mat-card>
+</ng-template>
+
+<br />
+<button mat-raised-button color="primary" (click)="addBookmark()">
+  Add more
+</button>
+
+<!-- <mat-card *ngFor="let bookmark of g.value">
+          
+    <button mat-button color="warn" (click)="removeBookmark(bookmark)">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-title> Name: {{ bookmark.name }} </mat-card-title>
+    <mat-card-content>
+      <p>
+        Bookmark link <a>{{ bookmark.url }}</a
+        >.
+      </p>
+    </mat-card-content>
+  </mat-card> -->

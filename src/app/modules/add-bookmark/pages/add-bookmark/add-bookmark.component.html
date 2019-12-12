@@ -1,0 +1,59 @@
+<div class="left">
+  <button mat-raised-button color="primary" routerLink="/">
+    <mat-icon matSuffix>arrow_back</mat-icon>
+    Back
+  </button>
+  <form (ngSubmit)="onSubmit()" [formGroup]="bookmarkForm">
+    <div class="form-wrapper">
+      <mat-form-field>
+        <input
+          formControlName="name"
+          class="form-control"
+          id="name"
+          type="text"
+          name="name"
+          matInput
+          placeholder="Name"
+        />
+        <mat-hint>Name is requaierd</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          formControlName="url"
+          class="form-control"
+          id="url"
+          type="text"
+          name="url"
+          matInput
+          placeholder="Url"
+        />
+
+        <mat-hint>Enter a full URL starting with https:// or http:// </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          formControlName="group"
+          class="form-control"
+          id="group"
+          type="text"
+          name="group"
+          matInput
+          placeholder="Group"
+        />
+        <mat-hint>Group is requaired</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!bookmarkForm.valid"
+    >
+      <mat-icon matSuffix>bookmark</mat-icon>
+      Add Bookmark
+    </button>
+  </form>
+</div>
