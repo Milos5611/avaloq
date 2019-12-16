@@ -9,4 +9,4 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [AddBookmarkComponent],
   imports: [CommonModule, SharedModule, AddBookmarkRoutingModule]
 })
-export class AddBookmarkModule {}
+export class AddNewBookmarkModule {}

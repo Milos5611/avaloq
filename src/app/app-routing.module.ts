@@ -6,7 +6,7 @@ const routes: Routes = [
     path: 'add-bookmark',
     loadChildren: () =>
       import('./modules/add-bookmark/add-bookmark.module').then(
-        m => m.AddBookmarkModule
+        m => m.AddNewBookmarkModule
       )
   },
   {
