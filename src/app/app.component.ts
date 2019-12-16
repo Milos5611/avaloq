@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AppState } from './app.state';
-import { Store } from '@ngrx/store';
-import { Bookmark } from './inerfaces/bookmark.interface';
-import { Observable } from 'rxjs';
+import { routeAnimations } from './core/animations/route.animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [routeAnimations]
 })
 export class AppComponent implements OnInit {
-  title = 'Avaloq - Bookmark app';
-  ngOnInit() {
-  }
+  title = 'Avaloq';
+  ngOnInit() {}
 }

@@ -3,7 +3,7 @@ import { Bookmark } from 'src/app/inerfaces/bookmark.interface';
 import { AppState } from 'src/app/app.state';
 import { select, Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
-import * as BookmarkActions from '../../../../actions/bookmarks.actions';
+import * as BookmarkActions from '../../../actions/bookmarks.actions';
 import { Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
 import { ReplaySubject } from 'rxjs';
@@ -14,45 +14,40 @@ import { ReplaySubject } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   private destroy$: ReplaySubject<boolean> = new ReplaySubject(1);
-
   bookmarks: Bookmark[];
   groups;
 
-  constructor(private store: Store<AppState>, private router: Router, private toastService: ToastService) { }
+  constructor(
+    private store: Store<AppState>,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
-  /**
-   *  @description Navigate to Add Bookmarks page
-   */
   addBookmark() {
-    this.router.navigate(['add']);
+    this.router.navigate(['add-bookmark']);
   }
 
-  /**
-   * @description Remove Bookmark on click
-   * @param bookmark - Bookmark
-   */
   removeBookmark(bookmark: Bookmark) {
-    this.store.dispatch(new BookmarkActions.DeleteBookmark(bookmark));
+    this.store.dispatch(
+      BookmarkActions.actionRemoveBookmark(
+        bookmark.name,
+        bookmark.url,
+        bookmark.group
+      )
+    );
     this.toastService.error(`Bookmark successfuly deleted`);
   }
 
-
   ngOnInit() {
-    this.store.
-      pipe(select('bookmark'), takeUntil(this.destroy$))
-      .subscribe((booksmarks: Bookmark[]) => {
-        this.groups = this.groupBy(booksmarks, 'group');
-        this.bookmarks = booksmarks;
+    this.store
+      .pipe(select('bookmark'), takeUntil(this.destroy$))
+      .subscribe((bookmarks: Bookmark[]) => {
+        this.groups = this.groupBy(bookmarks, 'group');
+        this.bookmarks = bookmarks;
       });
   }
 
-  /**
-   * @description Helper function for grouping objects by group property
-   * @param objectArray Bookmars Array
-   * @param property String
-   */
   groupBy(objectArray: Bookmark[], property: string) {
     return objectArray.reduce((acc, obj) => {
       const key = obj[property];
@@ -67,5 +62,4 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next(true);
   }
-
 }

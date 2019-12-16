@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -12,13 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BookmarkCardComponent } from './components/bookmark-card/bookmark-card.component';
 
-
-
-
-
 const COMPONENTS = [BookmarkCardComponent];
-
-const PIPES = [];
 
 const MODULES = [
   CommonModule,
@@ -31,14 +24,11 @@ const MODULES = [
   MatIconModule,
   MatCardModule,
   MatExpansionModule
-
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...PIPES],
-  exports: [...COMPONENTS, ...PIPES, ...MODULES],
-  imports: [
-    ...MODULES
-  ]
+  declarations: [...COMPONENTS],
+  exports: [...COMPONENTS, ...MODULES],
+  imports: [...MODULES]
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddBookmarkComponent } from './pages/add-bookmark/add-bookmark.component';
+import { AddBookmarkComponent } from './component/add-bookmark.component';
 
-
-const routes: Routes = [
-  { path: '', component: AddBookmarkComponent }
-];
+const routes: Routes = [{ path: '', component: AddBookmarkComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AddBookmarkRoutingModule { }
+export class AddBookmarkRoutingModule {}
